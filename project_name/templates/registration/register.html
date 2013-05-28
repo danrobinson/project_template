@@ -1,0 +1,25 @@
+{% extends 'page.html' %}
+{% load bootstrap_tags %}
+
+{% block title %}Register{% endblock %}
+
+{% block register %} class="active"{% endblock %}
+
+{% block page %}    
+
+    {% if form.errors %}
+    {{ form.non_field_errors }}
+    {% endif %}
+
+    <form class="form-horizontal" method="POST" action="{% url 'register' %}">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">Register</button>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </div>
+    </div>
+    </form>
+
+{% endblock %}

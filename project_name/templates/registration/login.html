@@ -1,0 +1,22 @@
+{% extends 'page.html' %}
+{% load bootstrap_tags %}
+
+{% block title %}Login{% endblock %}
+
+{% block login %} class="active"{% endblock %}
+
+{% block page %}
+
+    <form class="form-horizontal" method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">Login</button>
+      <a href="{% url 'password_reset' %}" class="btn">Reset Password</a>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </div>
+    </div>
+    </form>
+
+{% endblock %}
